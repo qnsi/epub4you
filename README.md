@@ -1,8 +1,16 @@
-# Welcome to your Expo app 👋
+# Welcome to your epub4you - minimal demo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplikacja prezentuje dwa podejścia do czytania epubów - jedno z wykorzystaniem biblioteki
+`@epubjs-react-native` i drugie z napisanym "od zera" parserem EPUBów. 
 
-## Get started
+Większość bibliotek do parsowania i wyświetlania epubów w react native zostało porzuconych, albo jak to zwykle jest problem z customizowaniem tego jak chcemy.
+
+Dlatego zaprezentowałem też drugie podejście, gdzie zczytuje epub zgodnie ze standardem (w zasadzie epub to zbiór plików xhtml które możemy w miarę łatwo wyświelić) i wyświetlam w webview jako html. 
+
+Które podejście byłoby lepsze pewnie zależy od większej wiedzy o tym jak planujecie rozwijać dalej produkt.
+
+## Uruchomienie projektu
+
 
 1. Install dependencies
 
@@ -11,40 +19,10 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```
 
 2. Start the app
+wydaje mi się że z wykorzystaniem expo-go nie działa pobieranie epubu z internetu, dlatego sugeruje jednak: 
 
    ```bash
-   npx expo start
+   npx expo run:ios --device
+    lub
+   npx expo run:android --device
    ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
