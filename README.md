@@ -1,4 +1,4 @@
-# Welcome to your epub4you - minimal demo app 👋
+# epub4you - minimal demo app 👋
 
 Aplikacja prezentuje dwa podejścia do czytania epubów - jedno z wykorzystaniem biblioteki
 `@epubjs-react-native` i drugie z napisanym "od zera" parserem EPUBów. 
