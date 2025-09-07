@@ -8,7 +8,6 @@ export interface ImageAssets {
 export const extractImageAssets = async (epubZip: JSZip): Promise<ImageAssets> => {
   const imageAssets: ImageAssets = {};
 
-  // Find all image files
   const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp'];
 
   for (const [fileName, file] of Object.entries(epubZip.files)) {
@@ -17,10 +16,8 @@ export const extractImageAssets = async (epubZip: JSZip): Promise<ImageAssets> =
 
       if (imageExtensions.includes(extension)) {
         try {
-          // Get image as base64
           const imageBase64 = await file.async('base64');
 
-          // Create data URL with proper MIME type
           let mimeType = 'image/jpeg';
           if (extension === '.png') mimeType = 'image/png';
           else if (extension === '.gif') mimeType = 'image/gif';
@@ -29,11 +26,9 @@ export const extractImageAssets = async (epubZip: JSZip): Promise<ImageAssets> =
 
           const dataUrl = `data:${mimeType};base64,${imageBase64}`;
 
-          // Store with just the filename for easier matching
           const baseFileName = fileName.split('/').pop() || fileName;
           imageAssets[baseFileName] = dataUrl;
 
-          // Also store with full path for exact matches
           imageAssets[fileName] = dataUrl;
 
         } catch (error) {

@@ -7,7 +7,7 @@ export const downloadAndExtractAsZip = async (epubUrl: string) => {
     const fileName = 'book.epub';
     const epubPath = `${FileSystem.documentDirectory}${fileName}`;
 
-    console.log('Downloading EPUB...');
+    console.log('Downloading EPUB..., epubUrl: ', epubUrl);
     const downloadResult = await FileSystem.downloadAsync(epubUrl, epubPath);
 
     if (downloadResult.status !== 200) {

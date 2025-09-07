@@ -20,7 +20,6 @@ export const parseEpubStructure = (extractedFiles: Record<string, string>): Epub
     const opfContent = extractedFiles[opfFile];
     const opfDir = opfFile.substring(0, opfFile.lastIndexOf('/') + 1);
 
-    // Parse manifest items using regex
     const manifestItems = {};
     const manifestRegex = /<item\s+([^>]+)>/g;
     let manifestMatch;
@@ -40,22 +39,6 @@ export const parseEpubStructure = (extractedFiles: Record<string, string>): Epub
       }
     }
 
-    // Parse spine and get TOC reference
-    const spineIndex = opfContent.match(/<spine\s+([^>]*)>/);
-    let tocId = null;
-
-    if (spineIndex) {
-      const spineAttrs = spineIndex[1];
-      const tocMatch = spineAttrs.match(/toc\s*=\s*["']([^"']+)["']/);
-      if (tocMatch) {
-        tocId = tocMatch[1];
-      }
-    }
-
-    const toc = parseTOC(tocId, manifestItems, extractedFiles);
-    console.log("toc: ", toc)
-
-    // Parse spine items using regex
     const spineItems = [];
     const spineRegex = /<itemref\s+([^>]+)>/g;
     let spineMatch;
@@ -69,18 +52,15 @@ export const parseEpubStructure = (extractedFiles: Record<string, string>): Epub
       }
     }
 
-    // Build chapters
-    // {"href": "4663558823322991372_60793-h-0.htm.xhtml#pgepubid00000", "id": "np-1", "playOrder": 1, "title": "BIBLE PICTURES AND STORIES IN LARGE PRINT."}
     const chapters: EpubChapter[] = [];
 
-    toc.forEach((tocEntry, index) => {
+    spineItems.forEach((itemId, index) => {
       const manifestItem = manifestItems[itemId];
 
       if (manifestItem && manifestItem.mediaType === 'application/xhtml+xml') {
         const content = extractedFiles[manifestItem.href];
 
         if (content) {
-          // Extract title
           const titleMatch = content.match(/<title[^>]*>([^<]*)<\/title>/i);
           const title = titleMatch ? titleMatch[1] : `Chapter ${index + 1}`;
 

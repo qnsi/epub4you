@@ -30,13 +30,6 @@ export default function HomeScreen() {
         <TouchableOpacity onPress={() => router.push("/xhtml")}>
           <Image style={styles.bookThumbnail} source="https://www.gutenberg.org/cache/epub/60793/pg60793.cover.medium.jpg" />
         </TouchableOpacity>
-        <ThemedText>Poczytaj biblie (@smoores/epub):</ThemedText>
-        <TouchableOpacity onPress={() => router.push("/smoores")}>
-          <Image style={styles.bookThumbnail} source="https://www.gutenberg.org/cache/epub/60793/pg60793.cover.medium.jpg" />
-        </TouchableOpacity>
-        {/* <TouchableOpacity onPress={() => router.push("/readium-bible")}> */}
-        {/*   <Image style={styles.bookThumbnail} source="https://www.gutenberg.org/cache/epub/60793/pg60793.cover.medium.jpg" /> */}
-        {/* </TouchableOpacity> */}
       </ThemedView>
     </ParallaxScrollView>
   );
